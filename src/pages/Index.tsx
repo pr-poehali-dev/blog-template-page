@@ -496,7 +496,7 @@ export default function Index() {
                 <span style={{ color: S.dim, fontSize: 13 }}>{selectedArticle.date}</span>
               </div>
               <h1 style={{
-                fontFamily: S.font, fontWeight: 900, fontSize: "clamp(26px, 5vw, 40px)",
+                fontFamily: S.font, fontWeight: 400, fontSize: "clamp(26px, 5vw, 40px)",
                 color: S.text, lineHeight: 1.2, marginBottom: 16,
               }}>
                 {selectedArticle.title}
