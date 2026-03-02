@@ -93,6 +93,72 @@ export default function Index() {
     setMeta("og:description", pageDescription, true);
     setMeta("og:type", selectedArticle ? "article" : "website", true);
     if (selectedArticle?.image) setMeta("og:image", selectedArticle.image, true);
+
+    const buildJsonLd = () => {
+      if (selectedArticle) {
+        return {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": selectedArticle.title,
+          "description": selectedArticle.excerpt,
+          "image": selectedArticle.image ?? "",
+          "datePublished": selectedArticle.date,
+          "timeRequired": `PT${parseInt(selectedArticle.readTime)}M`,
+          "author": {
+            "@type": "Person",
+            "name": selectedArticle.author
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "AVM Motors",
+            "url": "https://avmmotors.by"
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": window.location.href
+          },
+          "articleSection": selectedArticle.category,
+          "commentCount": selectedArticle.comments,
+          "inLanguage": "ru"
+        };
+      }
+      return {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Блог AVM Motors",
+        "description": "Обзоры, аналитика и советы о китайских автомобилях для покупателей в Беларуси и СНГ",
+        "url": window.location.href,
+        "publisher": {
+          "@type": "Organization",
+          "name": "AVM Motors",
+          "url": "https://avmmotors.by"
+        },
+        "inLanguage": "ru",
+        "blogPost": ARTICLES.map(a => ({
+          "@type": "BlogPosting",
+          "headline": a.title,
+          "description": a.excerpt,
+          "datePublished": a.date,
+          "image": a.image ?? "",
+          "author": { "@type": "Person", "name": a.author },
+          "articleSection": a.category
+        }))
+      };
+    };
+
+    let el = document.querySelector<HTMLScriptElement>('script[data-jsonld="blog"]');
+    if (!el) {
+      el = document.createElement("script");
+      el.setAttribute("type", "application/ld+json");
+      el.setAttribute("data-jsonld", "blog");
+      document.head.appendChild(el);
+    }
+    el.textContent = JSON.stringify(buildJsonLd());
+
+    return () => {
+      const s = document.querySelector('script[data-jsonld="blog"]');
+      if (s) s.remove();
+    };
   }, [pageTitle, pageDescription, selectedArticle]);
 
   return (
