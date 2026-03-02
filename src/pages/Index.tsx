@@ -447,7 +447,7 @@ export default function Index() {
                   key={cat}
                   onClick={() => handleCategoryClick(cat)}
                   style={{
-                    padding: "10px 18px", fontSize: 12, fontWeight: 700,
+                    padding: "10px 18px", fontSize: 12, fontWeight: 400,
                     textTransform: "uppercase", letterSpacing: "0.07em",
                     border: "none", cursor: "pointer", fontFamily: S.font,
                     background: "none", whiteSpace: "nowrap" as const,
@@ -472,147 +472,234 @@ export default function Index() {
       {/* ── ARTICLE PAGE ── */}
       {selectedArticle ? (
         <div className="animate-fade-in">
-          <div style={{ maxWidth: 800, margin: "0 auto", padding: "40px 20px" }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "32px 20px" }}>
+
             {/* Back */}
             <button
               onClick={handleBack}
               style={{
                 display: "flex", alignItems: "center", gap: 6, background: "none", border: "none",
-                cursor: "pointer", color: S.muted, fontSize: 13, fontFamily: S.font,
-                marginBottom: 32, padding: 0,
+                cursor: "pointer", color: S.dim, fontSize: 13, fontFamily: S.font,
+                marginBottom: 40, padding: 0, letterSpacing: "0.04em",
               }}
             >
-              <Icon name="ArrowLeft" size={16} />
+              <Icon name="ArrowLeft" size={15} />
               Назад к статьям
             </button>
 
-            {/* Article header */}
-            <div style={{ marginBottom: 32 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-                <ArticleBadge category={selectedArticle.category} />
-                <span style={{ color: S.dim, fontSize: 13, display: "flex", alignItems: "center", gap: 4 }}>
-                  <Icon name="Clock" size={12} />{selectedArticle.readTime}
-                </span>
-                <span style={{ color: S.dim, fontSize: 13 }}>{selectedArticle.date}</span>
-              </div>
-              <h1 style={{
-                fontFamily: S.font, fontWeight: 400, fontSize: "clamp(26px, 5vw, 40px)",
-                color: S.text, lineHeight: 1.2, marginBottom: 16,
-              }}>
-                {selectedArticle.title}
-              </h1>
-              <p style={{ color: S.muted, fontSize: 16, lineHeight: 1.7, marginBottom: 24 }}>
-                {selectedArticle.excerpt}
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 20, borderTop: `1px solid ${S.border}` }}>
-                <div style={{ width: 40, height: 40, background: `linear-gradient(135deg, #c62828, ${S.red})`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <Icon name="User" size={18} color="#fff" />
+            {/* Layout: content + sidebar */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 64, alignItems: "start" }}>
+
+              {/* ── MAIN COLUMN ── */}
+              <div>
+                {/* Meta */}
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+                  <ArticleBadge category={selectedArticle.category} />
+                  <span style={{ color: S.dim, fontSize: 13, display: "flex", alignItems: "center", gap: 4 }}>
+                    <Icon name="Clock" size={12} />{selectedArticle.readTime}
+                  </span>
+                  <span style={{ color: S.dim, fontSize: 13 }}>{selectedArticle.date}</span>
                 </div>
-                <div>
-                  <div style={{ color: S.text, fontSize: 14, fontWeight: 700 }}>{selectedArticle.author}</div>
-                  <div style={{ color: S.dim, fontSize: 12 }}>{selectedArticle.date}</div>
-                </div>
-              </div>
-            </div>
 
-            {/* Article body */}
-            <div style={{
-              color: "#ccc", fontSize: 16, lineHeight: 1.9,
-              borderTop: `3px solid ${CATEGORY_COLORS[selectedArticle.category] || S.red}`,
-              paddingTop: 32,
-            }}>
-              {selectedArticle.body.split("\n\n").map((para, i) => {
-                if (para.startsWith("**") && para.endsWith("**")) {
-                  return (
-                    <h3 key={i} style={{ fontFamily: S.font, fontWeight: 800, fontSize: 18, color: S.text, marginTop: 28, marginBottom: 12 }}>
-                      {para.replace(/\*\*/g, "")}
-                    </h3>
-                  );
-                }
-                if (para.includes("**")) {
-                  const parts = para.split(/(\*\*[^*]+\*\*)/g);
-                  return (
-                    <p key={i} style={{ marginBottom: 20 }}>
-                      {parts.map((part, j) =>
-                        part.startsWith("**") ? (
-                          <strong key={j} style={{ color: S.text, fontWeight: 700 }}>{part.replace(/\*\*/g, "")}</strong>
-                        ) : part
-                      )}
-                    </p>
-                  );
-                }
-                if (para.startsWith("- ")) {
-                  return (
-                    <ul key={i} style={{ paddingLeft: 20, marginBottom: 20 }}>
-                      {para.split("\n").map((line, j) => (
-                        <li key={j} style={{ marginBottom: 8 }}>{line.replace("- ", "")}</li>
-                      ))}
-                    </ul>
-                  );
-                }
-                return <p key={i} style={{ marginBottom: 20 }}>{para}</p>;
-              })}
-            </div>
+                {/* Title */}
+                <h1 style={{
+                  fontFamily: S.font, fontWeight: 300,
+                  fontSize: "clamp(28px, 4vw, 44px)",
+                  color: S.text, lineHeight: 1.15, marginBottom: 20,
+                  letterSpacing: "-0.01em",
+                }}>
+                  {selectedArticle.title}
+                </h1>
 
-            {/* Related articles */}
-            <div style={{ marginTop: 56, paddingTop: 32, borderTop: `1px solid ${S.border}` }}>
-              <h3 style={{ fontFamily: S.font, fontWeight: 800, fontSize: 16, color: S.text, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 20 }}>
-                Читайте также
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-                {ARTICLES.filter(a => a.id !== selectedArticle.id).slice(0, 4).map((a, i) => (
-                  <ArticleRow key={a.id} article={a} onClick={() => handleArticleClick(a)} index={i} />
-                ))}
-              </div>
-            </div>
+                {/* Excerpt */}
+                <p style={{ color: S.muted, fontSize: 17, lineHeight: 1.7, marginBottom: 28, fontWeight: 300 }}>
+                  {selectedArticle.excerpt}
+                </p>
 
-            {/* Comments */}
-            <div style={{ marginTop: 48, paddingTop: 32, borderTop: `1px solid ${S.border}` }}>
-              <h3 style={{ fontFamily: S.font, fontWeight: 800, fontSize: 16, color: S.text, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-                Комментарии ({comments.length})
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: 28 }}>
-                {comments.map(c => (
-                  <div key={c.id} style={{ background: S.card, border: `1px solid ${S.border}`, borderRadius: 8, padding: 16 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                      <div style={{ width: 30, height: 30, background: "#333", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <Icon name="User" size={13} color="#777" />
-                      </div>
-                      <span style={{ color: S.text, fontSize: 13, fontWeight: 700 }}>{c.name}</span>
-                      <span style={{ color: S.dim, fontSize: 12 }}>{c.time}</span>
-                    </div>
-                    <p style={{ color: S.muted, fontSize: 14, lineHeight: 1.6, margin: 0 }}>{c.text}</p>
+                {/* Author */}
+                <div style={{ display: "flex", alignItems: "center", gap: 12, paddingBottom: 28, borderBottom: `1px solid ${S.border}` }}>
+                  <div style={{ width: 36, height: 36, background: `linear-gradient(135deg, #c62828, ${S.red})`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <Icon name="User" size={16} color="#fff" />
                   </div>
-                ))}
+                  <div>
+                    <div style={{ color: S.text, fontSize: 13, fontWeight: 400 }}>{selectedArticle.author}</div>
+                    <div style={{ color: S.dim, fontSize: 12 }}>{selectedArticle.date}</div>
+                  </div>
+                </div>
+
+                {/* Video embed */}
+                <div style={{ margin: "32px 0" }}>
+                  <div style={{
+                    position: "relative", width: "100%", paddingBottom: "56.25%",
+                    background: "#111", borderRadius: 8, overflow: "hidden",
+                    border: `1px solid ${S.border}`,
+                  }}>
+                    <iframe
+                      style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                      title="Видео к статье"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                  <p style={{ color: S.dim, fontSize: 12, marginTop: 10, textAlign: "center" }}>
+                    Видеообзор по теме материала
+                  </p>
+                </div>
+
+                {/* Body */}
+                <div style={{ color: "#bbb", fontSize: 16, lineHeight: 1.9, fontWeight: 300 }}>
+                  {selectedArticle.body.split("\n\n").map((para, i) => {
+                    if (para.startsWith("**") && para.endsWith("**")) {
+                      return (
+                        <h2 key={i} style={{
+                          fontFamily: S.font, fontWeight: 400, fontSize: 20,
+                          color: S.text, marginTop: 36, marginBottom: 14,
+                          letterSpacing: "-0.01em",
+                        }}>
+                          {para.replace(/\*\*/g, "")}
+                        </h2>
+                      );
+                    }
+                    if (para.includes("**")) {
+                      const parts = para.split(/(\*\*[^*]+\*\*)/g);
+                      return (
+                        <p key={i} style={{ marginBottom: 20 }}>
+                          {parts.map((part, j) =>
+                            part.startsWith("**") ? (
+                              <span key={j} style={{ color: S.text, fontWeight: 400 }}>{part.replace(/\*\*/g, "")}</span>
+                            ) : part
+                          )}
+                        </p>
+                      );
+                    }
+                    if (para.startsWith("- ")) {
+                      return (
+                        <ul key={i} style={{ paddingLeft: 20, marginBottom: 20, display: "flex", flexDirection: "column" as const, gap: 8 }}>
+                          {para.split("\n").map((line, j) => (
+                            <li key={j} style={{ color: "#bbb" }}>{line.replace("- ", "")}</li>
+                          ))}
+                        </ul>
+                      );
+                    }
+                    return <p key={i} style={{ marginBottom: 20 }}>{para}</p>;
+                  })}
+                </div>
+
+                {/* Comments */}
+                <div style={{ marginTop: 56, paddingTop: 32, borderTop: `1px solid ${S.border}` }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 28 }}>
+                    <div style={{ width: 32, height: 1, background: S.red }} />
+                    <span style={{ fontFamily: S.font, fontWeight: 400, fontSize: 13, color: S.red, textTransform: "uppercase", letterSpacing: "0.15em" }}>
+                      Комментарии
+                    </span>
+                    <span style={{ color: S.dim, fontSize: 13 }}>({comments.length})</span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 24 }}>
+                    {comments.map(c => (
+                      <div key={c.id} style={{ background: S.card, border: `1px solid ${S.border}`, borderRadius: 8, padding: 16 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                          <div style={{ width: 28, height: 28, background: "#2a2a2a", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            <Icon name="User" size={12} color="#555" />
+                          </div>
+                          <span style={{ color: "#ccc", fontSize: 13, fontWeight: 400 }}>{c.name}</span>
+                          <span style={{ color: S.dim, fontSize: 12 }}>{c.time}</span>
+                        </div>
+                        <p style={{ color: S.muted, fontSize: 14, lineHeight: 1.6, margin: 0, fontWeight: 300 }}>{c.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                    <input
+                      type="text"
+                      placeholder="Ваше имя"
+                      value={commentName}
+                      onChange={e => setCommentName(e.target.value)}
+                      style={{ background: S.card, border: `1px solid ${S.border}`, color: S.text, padding: "10px 14px", borderRadius: 6, fontSize: 14, fontFamily: S.font, outline: "none", fontWeight: 300 }}
+                    />
+                    <textarea
+                      placeholder="Оставьте комментарий..."
+                      value={commentText}
+                      onChange={e => setCommentText(e.target.value)}
+                      rows={3}
+                      style={{ background: S.card, border: `1px solid ${S.border}`, color: S.text, padding: "10px 14px", borderRadius: 6, fontSize: 14, fontFamily: S.font, outline: "none", resize: "vertical" as const, fontWeight: 300 }}
+                    />
+                    <button
+                      onClick={handleCommentSubmit}
+                      style={{
+                        background: S.red, color: "#fff", border: "none", borderRadius: 6,
+                        padding: "11px 24px", fontSize: 12, fontWeight: 400, cursor: "pointer",
+                        fontFamily: S.font, textTransform: "uppercase", letterSpacing: "0.1em",
+                        alignSelf: "flex-start",
+                      }}
+                    >
+                      Отправить
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div style={{ background: S.card, border: `1px solid ${S.border}`, borderRadius: 8, padding: 20 }}>
-                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                  <input
-                    type="text"
-                    placeholder="Ваше имя"
-                    value={commentName}
-                    onChange={e => setCommentName(e.target.value)}
-                    style={{ background: "#252525", border: `1px solid ${S.border}`, color: S.text, padding: "10px 14px", borderRadius: 6, fontSize: 14, fontFamily: S.font, outline: "none" }}
-                  />
-                  <textarea
-                    placeholder="Оставьте комментарий..."
-                    value={commentText}
-                    onChange={e => setCommentText(e.target.value)}
-                    rows={3}
-                    style={{ background: "#252525", border: `1px solid ${S.border}`, color: S.text, padding: "10px 14px", borderRadius: 6, fontSize: 14, fontFamily: S.font, outline: "none", resize: "vertical" as const }}
-                  />
-                  <button
-                    onClick={handleCommentSubmit}
+
+              {/* ── SIDEBAR ── */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 32, position: "sticky", top: 120 }}>
+
+                {/* Read also */}
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+                    <div style={{ width: 24, height: 1, background: S.red }} />
+                    <span style={{ fontFamily: S.font, fontWeight: 400, fontSize: 11, color: S.red, textTransform: "uppercase", letterSpacing: "0.15em" }}>
+                      Читайте также
+                    </span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    {ARTICLES.filter(a => a.id !== selectedArticle.id).slice(0, 5).map(a => (
+                      <div
+                        key={a.id}
+                        onClick={() => handleArticleClick(a)}
+                        style={{
+                          padding: "14px 0", borderBottom: `1px solid ${S.border}`,
+                          cursor: "pointer", transition: "opacity 0.15s",
+                        }}
+                        onMouseEnter={e => (e.currentTarget.style.opacity = "0.7")}
+                        onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                      >
+                        <ArticleBadge category={a.category} />
+                        <div style={{ fontFamily: S.font, fontWeight: 300, fontSize: 14, color: S.text, lineHeight: 1.4, marginTop: 8 }}>
+                          {a.title}
+                        </div>
+                        <div style={{ color: S.dim, fontSize: 12, marginTop: 6, display: "flex", alignItems: "center", gap: 8 }}>
+                          <span style={{ display: "flex", alignItems: "center", gap: 3 }}>
+                            <Icon name="Clock" size={11} />{a.readTime}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div style={{ background: "linear-gradient(135deg, #1a0a0a, #2a1010)", border: `1px solid #3a1515`, borderRadius: 8, padding: 24 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                    <div style={{ width: 24, height: 1, background: S.red }} />
+                    <span style={{ fontFamily: S.font, fontWeight: 400, fontSize: 11, color: S.red, textTransform: "uppercase", letterSpacing: "0.15em" }}>
+                      AVM Motors
+                    </span>
+                  </div>
+                  <p style={{ color: "#ccc", fontSize: 14, lineHeight: 1.6, marginBottom: 20, fontWeight: 300 }}>
+                    Подберём автомобиль из Китая под ваш бюджет и задачи
+                  </p>
+                  <a
+                    href="tel:+375296397378"
                     style={{
-                      background: S.red, color: "#fff", border: "none", borderRadius: 6,
-                      padding: "12px 24px", fontSize: 13, fontWeight: 700, cursor: "pointer",
-                      fontFamily: S.font, textTransform: "uppercase", letterSpacing: "0.06em",
-                      alignSelf: "flex-start",
+                      display: "block", background: S.red, color: "#fff", textAlign: "center",
+                      padding: "12px", borderRadius: 6, textDecoration: "none",
+                      fontSize: 12, fontWeight: 400, letterSpacing: "0.1em",
+                      textTransform: "uppercase", fontFamily: S.font,
                     }}
                   >
-                    Отправить
-                  </button>
+                    +375 29 639 73 78
+                  </a>
                 </div>
+
               </div>
             </div>
           </div>
@@ -671,7 +758,7 @@ export default function Index() {
                       display: "flex", alignItems: "center", gap: 8,
                       background: S.card, border: `1px solid ${S.border}`,
                       borderRadius: 999, padding: "8px 16px", cursor: "pointer",
-                      fontFamily: S.font, fontSize: 13, fontWeight: 600, color: S.muted,
+                      fontFamily: S.font, fontSize: 13, fontWeight: 400, color: S.muted,
                       transition: "all 0.15s",
                     }}
                     onMouseEnter={e => {
