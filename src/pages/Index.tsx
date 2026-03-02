@@ -39,6 +39,7 @@ const ARTICLES = [
     date: "28 февраля 2026",
     readTime: "12 мин",
     comments: 24,
+    image: "https://cdn.poehali.dev/projects/13c2967d-0e3a-4480-9f5f-017b83bfe190/files/f15b26d4-88a3-4c2e-b519-039274fa983b.jpg",
     body: `Китайский автопром переживает беспрецедентный подъём. Ещё десять лет назад марки вроде BYD или Chery воспринимались как дешёвые копии западных автомобилей. Сегодня — это технологические лидеры, которые задают тренды в электромобилях, программном обеспечении и дизайне.
 
 **Почему это происходит?**
@@ -60,6 +61,7 @@ const ARTICLES = [
     date: "25 февраля 2026",
     readTime: "8 мин",
     comments: 41,
+    image: "https://cdn.poehali.dev/projects/13c2967d-0e3a-4480-9f5f-017b83bfe190/files/81685590-5ca4-4cb9-9de0-d60a6db3f746.jpg",
     body: `Li Auto L9 — это флагманский SUV с расширенным электрическим приводом (EREV). Это означает, что бензиновый двигатель работает исключительно как генератор, заряжая батарею. Результат: расход 8 л/100 км при мощности системы 560 л.с.
 
 **Первое впечатление**
@@ -85,6 +87,7 @@ const ARTICLES = [
     date: "22 февраля 2026",
     readTime: "15 мин",
     comments: 18,
+    image: "https://cdn.poehali.dev/projects/13c2967d-0e3a-4480-9f5f-017b83bfe190/files/a32c280e-71db-4ee9-be2c-1814be74083a.jpg",
     body: `Пригнать авто из Китая самостоятельно — реально, но требует подготовки. Вот пошаговый план.
 
 **Шаг 1: Выбор площадки**
@@ -111,6 +114,7 @@ const ARTICLES = [
     date: "18 февраля 2026",
     readTime: "5 мин",
     comments: 33,
+    image: "https://cdn.poehali.dev/projects/13c2967d-0e3a-4480-9f5f-017b83bfe190/files/de6e0138-0934-4a88-9fb6-a0d3feb896c9.jpg",
     body: `Официальный дилер Chery в Беларуси объявил о начале продаж флагманского кроссовера Tiggo 9. Автомобиль доступен в трёх комплектациях.
 
 **Комплектации и цены:**
@@ -135,6 +139,7 @@ const ARTICLES = [
     date: "14 февраля 2026",
     readTime: "11 мин",
     comments: 57,
+    image: "https://cdn.poehali.dev/projects/13c2967d-0e3a-4480-9f5f-017b83bfe190/files/0a61264f-a128-4aeb-8ecb-8afd28a5f84d.jpg",
     body: `CATL анонсировала аккумулятор Kirin 3.0 с заявленными характеристиками: 1000 км запаса хода и зарядка до 80% за 10 минут. Звучит как фантастика. Давайте разберёмся.
 
 **Реальные цифры**
@@ -160,6 +165,7 @@ const ARTICLES = [
     date: "10 февраля 2026",
     readTime: "9 мин",
     comments: 29,
+    image: "https://cdn.poehali.dev/projects/13c2967d-0e3a-4480-9f5f-017b83bfe190/files/8ed061d8-160f-4a8f-b91a-d6e00c8ce6a8.jpg",
     body: `За 3 года работы мы помогли пригнать более 500 автомобилей. Вот ошибки, которые совершают почти все новички.
 
 **Ошибка 1: Покупать без осмотра**
@@ -186,6 +192,7 @@ const ARTICLES = [
     date: "5 февраля 2026",
     readTime: "14 мин",
     comments: 88,
+    image: "https://cdn.poehali.dev/projects/13c2967d-0e3a-4480-9f5f-017b83bfe190/files/5d808f2a-5629-4c27-a3ea-ac8a4847eae4.jpg",
     body: `BYD Seal и Tesla Model 3 — главные конкуренты в сегменте электрических седанов. Вот наш честный разбор.
 
 **Дизайн**
@@ -282,6 +289,15 @@ function ArticleCard({ article, onClick, featured }: { article: Article; onClick
         (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
       }}
     >
+      {article.image && (
+        <div style={{ width: "100%", height: featured ? 220 : 180, overflow: "hidden" }}>
+          <img
+            src={article.image}
+            alt={article.title}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.3s" }}
+          />
+        </div>
+      )}
       <div style={{ padding: featured ? 28 : 20 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
           <ArticleBadge category={article.category} />
@@ -334,12 +350,18 @@ function ArticleRow({ article, onClick, index }: { article: Article; onClick: ()
       onMouseEnter={e => (e.currentTarget.style.paddingLeft = "10px")}
       onMouseLeave={e => (e.currentTarget.style.paddingLeft = "0")}
     >
-      <span style={{
-        fontSize: 32, fontWeight: 900, color: "#252525",
-        fontFamily: S.font, lineHeight: 1, minWidth: 40, flexShrink: 0,
-      }}>
-        {String(index + 1).padStart(2, "0")}
-      </span>
+      {article.image ? (
+        <div style={{ width: 90, height: 70, borderRadius: 6, overflow: "hidden", flexShrink: 0 }}>
+          <img src={article.image} alt={article.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </div>
+      ) : (
+        <span style={{
+          fontSize: 32, fontWeight: 900, color: "#252525",
+          fontFamily: S.font, lineHeight: 1, minWidth: 40, flexShrink: 0,
+        }}>
+          {String(index + 1).padStart(2, "0")}
+        </span>
+      )}
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
           <ArticleBadge category={article.category} />
@@ -539,6 +561,17 @@ export default function Index() {
                     <div style={{ color: S.dim, fontSize: 12 }}>{selectedArticle.date}</div>
                   </div>
                 </div>
+
+                {/* Hero image */}
+                {selectedArticle.image && (
+                  <div style={{ margin: "28px 0 0", borderRadius: 10, overflow: "hidden", border: `1px solid ${S.border}` }}>
+                    <img
+                      src={selectedArticle.image}
+                      alt={selectedArticle.title}
+                      style={{ width: "100%", height: isMobile ? 220 : 360, objectFit: "cover", display: "block" }}
+                    />
+                  </div>
+                )}
 
                 {/* Video embed */}
                 <div style={{ margin: "32px 0" }}>
