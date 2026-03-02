@@ -3,6 +3,22 @@ import Icon from "@/components/ui/icon";
 
 const CATEGORIES = ["Все", "Аналитика", "Новости", "Обзоры", "Советы", "Технологии"];
 
+const CATEGORY_COLORS: Record<string, string> = {
+  "Аналитика": "#e53935",
+  "Обзоры": "#1565c0",
+  "Советы": "#2e7d32",
+  "Новости": "#f57c00",
+  "Технологии": "#6a1b9a",
+};
+
+const CATEGORY_ICONS: Record<string, string> = {
+  "Аналитика": "BarChart2",
+  "Обзоры": "Star",
+  "Советы": "Lightbulb",
+  "Новости": "Zap",
+  "Технологии": "Cpu",
+};
+
 const ARTICLES = [
   {
     id: 1,
@@ -13,7 +29,17 @@ const ARTICLES = [
     date: "28 февраля 2026",
     readTime: "12 мин",
     comments: 24,
-    tag: "Аналитика",
+    body: `Китайский автопром переживает беспрецедентный подъём. Ещё десять лет назад марки вроде BYD или Chery воспринимались как дешёвые копии западных автомобилей. Сегодня — это технологические лидеры, которые задают тренды в электромобилях, программном обеспечении и дизайне.
+
+**Почему это происходит?**
+
+Государственные субсидии, доступ к редкоземельным металлам и огромный внутренний рынок создали идеальные условия для роста. Китайские производители инвестируют в R&D больше, чем большинство европейских концернов.
+
+**Что это значит для покупателей СНГ?**
+
+Рынок наполняется качественными автомобилями по ценам значительно ниже европейских аналогов. BYD Seal конкурирует с Tesla Model 3, а стоит на 20–30% дешевле. Li Auto L9 предлагает 6-местный салон премиум-класса за деньги, сопоставимые с BMW X5.
+
+Главный вызов — сервисная инфраструктура и долгосрочная поддержка. Но и здесь ситуация стремительно меняется: официальные дилеры открываются по всей Беларуси и России.`,
   },
   {
     id: 2,
@@ -24,7 +50,21 @@ const ARTICLES = [
     date: "25 февраля 2026",
     readTime: "8 мин",
     comments: 41,
-    tag: "Обзоры",
+    body: `Li Auto L9 — это флагманский SUV с расширенным электрическим приводом (EREV). Это означает, что бензиновый двигатель работает исключительно как генератор, заряжая батарею. Результат: расход 8 л/100 км при мощности системы 560 л.с.
+
+**Первое впечатление**
+
+Автомобиль огромный. Длина 5,2 метра, высота почти 1,8. Войти в третий ряд — легко, вылезти — тоже. Это редкость для большинства конкурентов.
+
+**Технологии**
+
+Три больших экрана, включая отдельный экран для задних пассажиров. Система LIDAR для автопилота второго уровня. Подвеска с активной регулировкой клиренса.
+
+**Минусы**
+
+Тормозной путь мог бы быть короче при массе 2,9 тонны. Интерфейс русифицирован, но не до конца — часть меню на китайском.
+
+**Вердикт:** 8.5/10. Если ищете семейный автомобиль без компромиссов — это серьёзный вариант.`,
   },
   {
     id: 3,
@@ -35,7 +75,22 @@ const ARTICLES = [
     date: "22 февраля 2026",
     readTime: "15 мин",
     comments: 18,
-    tag: "Советы",
+    body: `Пригнать авто из Китая самостоятельно — реально, но требует подготовки. Вот пошаговый план.
+
+**Шаг 1: Выбор площадки**
+Основные площадки: Autohome, Yiche, Guazi (б/у). Для новых авто — официальные дилеры или посредники.
+
+**Шаг 2: Проверка автомобиля**
+Никогда не переводите деньги без инспекции. Наймите местного агента или воспользуйтесь сервисами удалённой проверки с фото/видео.
+
+**Шаг 3: Логистика**
+Морем до Владивостока — 25–35 дней. Далее автовозом или своим ходом. Стоимость доставки — $1500–3000 в зависимости от маршрута.
+
+**Шаг 4: Таможня**
+Расчёт пошлины зависит от объёма двигателя и стоимости авто. Для физлиц действуют льготные ставки при ввозе 1 авто в 3 года.
+
+**Шаг 5: Сертификация ОТТС**
+Обязательна для постановки на учёт. Стоимость — от 800 до 2000 USD. Срок — 2–4 недели.`,
   },
   {
     id: 4,
@@ -46,7 +101,20 @@ const ARTICLES = [
     date: "18 февраля 2026",
     readTime: "5 мин",
     comments: 33,
-    tag: "Новости",
+    body: `Официальный дилер Chery в Беларуси объявил о начале продаж флагманского кроссовера Tiggo 9. Автомобиль доступен в трёх комплектациях.
+
+**Комплектации и цены:**
+
+- Comfort: 52 000 BYN — 2.0T, 197 л.с., базовая оснащённость
+- Premium: 59 000 BYN — добавляются кожаный салон, панорамная крыша
+- Ultimate: 65 000 BYN — полный фарш, LIDAR, L2+ автопилот, массаж передних сидений
+
+**Что входит в базу:**
+10.25" экран, климат-контроль, камера 360°, подогрев всех сидений.
+
+**Сроки поставки:** 4–6 недель после оформления заказа.
+
+Первые тест-драйвы для клиентов пройдут в марте 2026 года. Запись открыта на сайте дилера.`,
   },
   {
     id: 5,
@@ -57,7 +125,21 @@ const ARTICLES = [
     date: "14 февраля 2026",
     readTime: "11 мин",
     comments: 57,
-    tag: "Технологии",
+    body: `CATL анонсировала аккумулятор Kirin 3.0 с заявленными характеристиками: 1000 км запаса хода и зарядка до 80% за 10 минут. Звучит как фантастика. Давайте разберёмся.
+
+**Реальные цифры**
+
+1000 км — это в условиях CLTC (китайский цикл), который значительно оптимистичнее WLTP или EPA. В реальных условиях ожидайте 700–750 км. Всё равно впечатляет.
+
+Зарядка за 10 минут требует зарядной станции мощностью 480 кВт+. Их пока единицы даже в Китае.
+
+**Почему не везде?**
+
+Производство Kirin 3.0 дорогое. Пока аккумулятор ставится только в топовые версии автомобилей стоимостью от $60 000. Массовые авто получат технологию через 3–4 года.
+
+**Вывод**
+
+Технология реальная и революционная. Но до массового рынка ещё далеко. Следим за развитием событий.`,
   },
   {
     id: 6,
@@ -68,17 +150,73 @@ const ARTICLES = [
     date: "10 февраля 2026",
     readTime: "9 мин",
     comments: 29,
-    tag: "Советы",
+    body: `За 3 года работы мы помогли пригнать более 500 автомобилей. Вот ошибки, которые совершают почти все новички.
+
+**Ошибка 1: Покупать без осмотра**
+Фотографии можно подделать. Всегда заказывайте физическую инспекцию или видеозвонок с агентом на месте.
+
+**Ошибка 2: Игнорировать конфигурацию**
+Китайские авто часто имеют 10+ комплектаций. Убедитесь, что выбранная версия соответствует стандартам вашей страны (напряжение, разъёмы зарядки, документация).
+
+**Ошибка 3: Не считать полную стоимость**
+К цене авто добавьте: доставку, таможню, сертификацию, страховку. Итог может быть на 30–40% выше.
+
+**Ошибка 4: Не проверять сервисную сеть**
+Если марка не представлена официально — с запчастями будут проблемы. Проверьте наличие дилеров заранее.
+
+**Ошибка 5: Спешить**
+Рынок огромный. Не соглашайтесь на первый вариант. Потратьте 2–3 недели на выбор — сэкономите годы нервов.`,
   },
-];
+  {
+    id: 7,
+    category: "Обзоры",
+    title: "BYD Seal vs Tesla Model 3: честное сравнение",
+    excerpt: "Два самых обсуждаемых электрического седана 2026 года. Мы сравнили их вживую по 20 параметрам.",
+    author: "Мария Соколова",
+    date: "5 февраля 2026",
+    readTime: "14 мин",
+    comments: 88,
+    body: `BYD Seal и Tesla Model 3 — главные конкуренты в сегменте электрических седанов. Вот наш честный разбор.
 
-const POPULAR = [ARTICLES[4], ARTICLES[1], ARTICLES[2]];
+**Дизайн**
+Seal выигрывает по интерьеру: больше материалов, лучше отделка. Model 3 лаконичнее, но беднее на ощупь.
 
-const ARCHIVE = [
-  { month: "Февраль 2026", count: 12 },
-  { month: "Январь 2026", count: 18 },
-  { month: "Декабрь 2025", count: 15 },
-  { month: "Ноябрь 2025", count: 21 },
+**Технологии**
+Tesla — лидер по программному обеспечению и автопилоту. Но BYD активно догоняет с DiPilot.
+
+**Батарея**
+Seal: Blade Battery — 700 км WLTP, безопаснее при авариях.
+Model 3 LR: 629 км WLTP, зарядная сеть Supercharger вне конкуренции.
+
+**Цена**
+Seal в Беларуси: от 42 000 BYN.
+Model 3 RWD: от 58 000 BYN.
+
+**Вердикт:** Если важна цена — Seal. Если важна экосистема и сервис — Tesla.`,
+  },
+  {
+    id: 8,
+    category: "Аналитика",
+    title: "Почему белорусский рынок стал лакомым куском для китайских брендов",
+    excerpt: "Санкции, логистика и менталитет — разбираем, почему именно Беларусь стала воротами для китайского автопрома в СНГ.",
+    author: "Алексей Громов",
+    date: "1 февраля 2026",
+    readTime: "10 мин",
+    comments: 19,
+    body: `Беларусь превратилась в один из ключевых рынков для китайских автопроизводителей в регионе. Почему?
+
+**Санкционный контекст**
+Уход европейских брендов создал вакуум. Китайские производители заполнили его быстро и агрессивно.
+
+**Логистика**
+Прямые железнодорожные маршруты Китай–Беларусь через Россию делают доставку предсказуемой и относительно дешёвой.
+
+**Менталитет покупателей**
+Белорусы традиционно ценят надёжность и соотношение цена/качество. Китайские авто нового поколения закрывают оба пункта.
+
+**Перспективы**
+К 2027 году ожидается открытие первых совместных производств и сборочных цехов на территории Беларуси.`,
+  },
 ];
 
 const COMMENTS_DEMO = [
@@ -87,35 +225,162 @@ const COMMENTS_DEMO = [
   { id: 3, name: "Михаил Т.", text: "Прочитал на одном дыхании. Можно ссылки на источники?", time: "вчера" },
 ];
 
-const CATEGORY_COLORS: Record<string, string> = {
-  "Аналитика": "#e53935",
-  "Обзоры": "#1565c0",
-  "Советы": "#2e7d32",
-  "Новости": "#f57c00",
-  "Технологии": "#6a1b9a",
-};
-
-type Page = "home" | "articles" | "categories" | "archive" | "about" | "contacts" | "article";
 type Article = typeof ARTICLES[0];
 
+const S = {
+  font: "'Montserrat', sans-serif",
+  bg: "#1a1a1a",
+  card: "#1e1e1e",
+  border: "#2a2a2a",
+  red: "#e53935",
+  text: "#f0f0f0",
+  muted: "#888",
+  dim: "#555",
+};
+
+function ArticleBadge({ category }: { category: string }) {
+  return (
+    <span style={{
+      background: CATEGORY_COLORS[category] || S.red,
+      color: "#fff", padding: "3px 10px", borderRadius: 2,
+      fontSize: 10, fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.08em",
+      display: "inline-block",
+    }}>
+      {category}
+    </span>
+  );
+}
+
+function ArticleCard({ article, onClick, featured }: { article: Article; onClick: () => void; featured?: boolean }) {
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        background: S.card, border: `1px solid ${S.border}`, borderRadius: 8,
+        overflow: "hidden", cursor: "pointer", transition: "all 0.2s",
+        borderTop: `3px solid ${CATEGORY_COLORS[article.category] || S.red}`,
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLDivElement).style.borderColor = CATEGORY_COLORS[article.category] || S.red;
+        (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = `0 8px 32px rgba(0,0,0,0.4)`;
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLDivElement).style.borderColor = S.border;
+        (e.currentTarget as HTMLDivElement).style.borderTopColor = CATEGORY_COLORS[article.category] || S.red;
+        (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+      }}
+    >
+      <div style={{ padding: featured ? 28 : 20 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+          <ArticleBadge category={article.category} />
+          <span style={{ color: S.dim, fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
+            <Icon name="Clock" size={11} />
+            {article.readTime}
+          </span>
+        </div>
+        <h3 style={{
+          fontFamily: S.font, fontWeight: 700,
+          fontSize: featured ? 20 : 15,
+          color: S.text, lineHeight: 1.4, marginBottom: 10,
+        }}>
+          {article.title}
+        </h3>
+        {featured && (
+          <p style={{ color: S.muted, fontSize: 14, lineHeight: 1.7, marginBottom: 16 }}>
+            {article.excerpt}
+          </p>
+        )}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 12, borderTop: `1px solid ${S.border}` }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ width: 26, height: 26, background: "#333", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Icon name="User" size={12} color="#999" />
+            </div>
+            <div>
+              <div style={{ color: "#ccc", fontSize: 12, fontWeight: 600 }}>{article.author}</div>
+              <div style={{ color: S.dim, fontSize: 11 }}>{article.date}</div>
+            </div>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 4, color: S.dim, fontSize: 12 }}>
+            <Icon name="MessageCircle" size={12} />
+            {article.comments}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ArticleRow({ article, onClick, index }: { article: Article; onClick: () => void; index: number }) {
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        display: "flex", gap: 20, alignItems: "flex-start",
+        padding: "20px 0", borderBottom: `1px solid ${S.border}`,
+        cursor: "pointer", transition: "all 0.2s",
+      }}
+      onMouseEnter={e => (e.currentTarget.style.paddingLeft = "10px")}
+      onMouseLeave={e => (e.currentTarget.style.paddingLeft = "0")}
+    >
+      <span style={{
+        fontSize: 32, fontWeight: 900, color: "#252525",
+        fontFamily: S.font, lineHeight: 1, minWidth: 40, flexShrink: 0,
+      }}>
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+          <ArticleBadge category={article.category} />
+          <span style={{ color: S.dim, fontSize: 11 }}>{article.date}</span>
+        </div>
+        <div style={{ fontFamily: S.font, fontWeight: 700, fontSize: 15, color: S.text, lineHeight: 1.4, marginBottom: 6 }}>
+          {article.title}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, color: S.dim, fontSize: 12 }}>
+          <span style={{ display: "flex", alignItems: "center", gap: 3 }}>
+            <Icon name="Clock" size={11} />{article.readTime}
+          </span>
+          <span style={{ display: "flex", alignItems: "center", gap: 3 }}>
+            <Icon name="MessageCircle" size={11} />{article.comments}
+          </span>
+          <span>{article.author}</span>
+        </div>
+      </div>
+      <Icon name="ChevronRight" size={16} color={S.dim} />
+    </div>
+  );
+}
+
 export default function Index() {
-  const [page, setPage] = useState<Page>("home");
   const [activeCategory, setActiveCategory] = useState("Все");
-  const [selectedArticle, setSelectedArticle] = useState<Article>(ARTICLES[0]);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const [commentText, setCommentText] = useState("");
   const [commentName, setCommentName] = useState("");
   const [comments, setComments] = useState(COMMENTS_DEMO);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  const filteredArticles = ARTICLES.filter(a =>
+  const filtered = ARTICLES.filter(a =>
     (activeCategory === "Все" || a.category === activeCategory) &&
-    (searchQuery === "" || a.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    (searchQuery === "" || a.title.toLowerCase().includes(searchQuery.toLowerCase()) || a.excerpt.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const handleArticleClick = (article: Article) => {
     setSelectedArticle(article);
-    setPage("article");
+    window.scrollTo(0, 0);
+  };
+
+  const handleBack = () => {
+    setSelectedArticle(null);
+    window.scrollTo(0, 0);
+  };
+
+  const handleCategoryClick = (cat: string) => {
+    setActiveCategory(cat);
+    setSelectedArticle(null);
+    setSearchQuery("");
     window.scrollTo(0, 0);
   };
 
@@ -126,753 +391,319 @@ export default function Index() {
       ...comments,
     ]);
     setCommentText("");
+    setCommentName("");
   };
 
-  const navItems: { label: string; id: Page }[] = [
-    { label: "Главная", id: "home" },
-    { label: "Статьи", id: "articles" },
-    { label: "Категории", id: "categories" },
-    { label: "Архив", id: "archive" },
-    { label: "Об авторах", id: "about" },
-    { label: "Контакты", id: "contacts" },
-  ];
+  const accentColor = activeCategory !== "Все" ? (CATEGORY_COLORS[activeCategory] || S.red) : S.red;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#1a1a1a", color: "#f0f0f0", fontFamily: "'Montserrat', sans-serif" }}>
+    <div style={{ backgroundColor: S.bg, color: S.text, fontFamily: S.font, minHeight: "100vh" }}>
 
-      <main>
-
-        {/* ===== HOME ===== */}
-        {page === "home" && (
-          <div className="animate-fade-in">
-            
-            {/* Latest + Popular */}
-            <section style={{ maxWidth: 1280, margin: "0 auto", padding: "60px 24px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 48 }} className="md:grid">
-                
-                {/* Latest articles */}
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 32 }}>
-                    <h2 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 22, color: "#fff", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                      <span className="red-line" />
-                      Последние статьи
-                    </h2>
-                    <button onClick={() => setPage("articles")} style={{
-                      background: "none", border: "none", cursor: "pointer",
-                      color: "#e53935", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em",
-                      textTransform: "uppercase", fontFamily: "Montserrat",
-                      display: "flex", alignItems: "center", gap: 4,
-                    }}>
-                      Все статьи <Icon name="ArrowRight" size={14} />
-                    </button>
-                  </div>
-
-                  {/* Featured card */}
-                  <div
-                    onClick={() => handleArticleClick(ARTICLES[0])}
-                    style={{
-                      background: "#1e1e1e", border: "1px solid #2a2a2a", borderRadius: 6,
-                      overflow: "hidden", cursor: "pointer", marginBottom: 24,
-                      transition: "border-color 0.2s",
-                    }}
-                    onMouseEnter={e => (e.currentTarget.style.borderColor = "#e53935")}
-                    onMouseLeave={e => (e.currentTarget.style.borderColor = "#2a2a2a")}
-                  >
-                    <div style={{ padding: 28 }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-                        <span style={{
-                          background: "#e53935", color: "#fff", padding: "3px 10px",
-                          borderRadius: 2, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em",
-                        }}>
-                          {ARTICLES[0].category}
-                        </span>
-                        <span style={{ color: "#555", fontSize: 12 }}>
-                          <Icon name="Clock" size={12} style={{ display: "inline", marginRight: 4 }} />
-                          {ARTICLES[0].readTime}
-                        </span>
-                      </div>
-                      <h3 style={{ fontFamily: "Montserrat", fontWeight: 700, fontSize: 22, color: "#fff", lineHeight: 1.3, marginBottom: 12 }}>
-                        {ARTICLES[0].title}
-                      </h3>
-                      <p style={{ color: "#888", fontSize: 14, lineHeight: 1.7, marginBottom: 20 }}>
-                        {ARTICLES[0].excerpt}
-                      </p>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                          <div style={{ width: 30, height: 30, background: "#e53935", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                            <Icon name="User" size={14} color="#fff" />
-                          </div>
-                          <div>
-                            <div style={{ color: "#ccc", fontSize: 13, fontWeight: 600 }}>{ARTICLES[0].author}</div>
-                            <div style={{ color: "#555", fontSize: 11 }}>{ARTICLES[0].date}</div>
-                          </div>
-                        </div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 4, color: "#555", fontSize: 13 }}>
-                          <Icon name="MessageCircle" size={14} />
-                          {ARTICLES[0].comments}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Rest of articles */}
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                    {ARTICLES.slice(1, 5).map(article => (
-                      <div
-                        key={article.id}
-                        onClick={() => handleArticleClick(article)}
-                        style={{
-                          background: "#1e1e1e", border: "1px solid #2a2a2a", borderRadius: 6,
-                          padding: 20, cursor: "pointer", transition: "border-color 0.2s",
-                        }}
-                        onMouseEnter={e => (e.currentTarget.style.borderColor = "#e53935")}
-                        onMouseLeave={e => (e.currentTarget.style.borderColor = "#2a2a2a")}
-                      >
-                        <span style={{
-                          background: CATEGORY_COLORS[article.category] || "#333",
-                          color: "#fff", padding: "2px 8px",
-                          borderRadius: 2, fontSize: 10, fontWeight: 700, textTransform: "uppercase",
-                          letterSpacing: "0.08em", display: "inline-block", marginBottom: 10,
-                        }}>
-                          {article.category}
-                        </span>
-                        <h4 style={{ fontFamily: "Montserrat", fontWeight: 700, fontSize: 14, color: "#fff", lineHeight: 1.4, marginBottom: 10 }}>
-                          {article.title}
-                        </h4>
-                        <div style={{ display: "flex", alignItems: "center", gap: 12, color: "#555", fontSize: 12 }}>
-                          <span style={{ display: "flex", alignItems: "center", gap: 3 }}>
-                            <Icon name="Clock" size={11} />
-                            {article.readTime}
-                          </span>
-                          <span style={{ display: "flex", alignItems: "center", gap: 3 }}>
-                            <Icon name="MessageCircle" size={11} />
-                            {article.comments}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Sidebar */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-                  
-                  {/* Popular */}
-                  <div>
-                    <h3 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 16, color: "#fff", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 20, paddingBottom: 12, borderBottom: "2px solid #e53935", display: "inline-block" }}>
-                      Популярное
-                    </h3>
-                    <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-                      {POPULAR.map((article, i) => (
-                        <div
-                          key={article.id}
-                          onClick={() => handleArticleClick(article)}
-                          style={{
-                            padding: "16px 0", borderBottom: "1px solid #222", cursor: "pointer",
-                            display: "flex", gap: 12, alignItems: "flex-start",
-                          }}
-                        >
-                          <span style={{ fontSize: 28, fontWeight: 900, color: "#2a2a2a", fontFamily: "Montserrat", lineHeight: 1, minWidth: 32 }}>
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <div>
-                            <span style={{
-                              fontSize: 10, fontWeight: 700, textTransform: "uppercase",
-                              color: CATEGORY_COLORS[article.category] || "#e53935",
-                              letterSpacing: "0.08em", display: "block", marginBottom: 4,
-                            }}>
-                              {article.category}
-                            </span>
-                            <p style={{ fontSize: 13, color: "#ccc", fontWeight: 600, lineHeight: 1.4 }}>
-                              {article.title}
-                            </p>
-                            <span style={{ fontSize: 11, color: "#555", marginTop: 4, display: "block" }}>
-                              {article.date}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Categories */}
-                  <div style={{ background: "#1e1e1e", border: "1px solid #2a2a2a", borderRadius: 6, padding: 24 }}>
-                    <h3 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 16, color: "#fff", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 16 }}>
-                      Категории
-                    </h3>
-                    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                      {CATEGORIES.slice(1).map(cat => (
-                        <button
-                          key={cat}
-                          onClick={() => { setActiveCategory(cat); setPage("articles"); }}
-                          style={{
-                            background: "none", border: "1px solid #2a2a2a", borderRadius: 4,
-                            padding: "10px 14px", cursor: "pointer", textAlign: "left",
-                            display: "flex", alignItems: "center", justifyContent: "space-between",
-                            transition: "all 0.2s",
-                            color: "#ccc", fontSize: 13, fontWeight: 600, fontFamily: "Montserrat",
-                          }}
-                          onMouseEnter={e => {
-                            (e.currentTarget as HTMLButtonElement).style.borderColor = "#e53935";
-                            (e.currentTarget as HTMLButtonElement).style.color = "#e53935";
-                          }}
-                          onMouseLeave={e => {
-                            (e.currentTarget as HTMLButtonElement).style.borderColor = "#2a2a2a";
-                            (e.currentTarget as HTMLButtonElement).style.color = "#ccc";
-                          }}
-                        >
-                          <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                            <span style={{ width: 8, height: 8, borderRadius: "50%", background: CATEGORY_COLORS[cat] || "#e53935", display: "inline-block" }} />
-                            {cat}
-                          </span>
-                          <Icon name="ChevronRight" size={14} />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* CTA */}
-                  <div style={{
-                    background: "linear-gradient(135deg, #c62828, #e53935)",
-                    borderRadius: 6, padding: 24, textAlign: "center",
-                  }}>
-                    <Icon name="Car" size={32} color="rgba(255,255,255,0.7)" />
-                    <h3 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 18, color: "#fff", marginTop: 12, marginBottom: 8 }}>
-                      Подобрать авто
-                    </h3>
-                    <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 13, lineHeight: 1.5, marginBottom: 16 }}>
-                      Поможем выбрать и пригнать авто из Китая под ваш бюджет
-                    </p>
-                    <button style={{
-                      background: "#fff", color: "#e53935", border: "none", borderRadius: 4,
-                      padding: "10px 20px", fontSize: 13, fontWeight: 800, cursor: "pointer",
-                      textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Montserrat",
-                      width: "100%",
-                    }}>
-                      Консультация эксперта
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        )}
-
-        {/* ===== ARTICLES ===== */}
-        {page === "articles" && (
-          <div className="animate-fade-in">
-            {/* Page header */}
-            <div style={{ borderBottom: "1px solid #2a2a2a", padding: "40px 24px 0" }}>
-              <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-                <p className="section-label" style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-                  <span className="red-line" />
-                  Все материалы
-                </p>
-                <h1 style={{ fontFamily: "Montserrat", fontWeight: 900, fontSize: 48, color: "#fff", textTransform: "uppercase", marginBottom: 32 }}>
-                  Статьи
-                </h1>
-                
-                {/* Category filter */}
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", paddingBottom: 0 }}>
-                  {CATEGORIES.map(cat => (
-                    <button
-                      key={cat}
-                      onClick={() => setActiveCategory(cat)}
-                      style={{
-                        padding: "10px 20px", fontSize: 12, fontWeight: 700,
-                        textTransform: "uppercase", letterSpacing: "0.08em",
-                        border: "none", cursor: "pointer", fontFamily: "Montserrat",
-                        background: activeCategory === cat ? "#e53935" : "#222",
-                        color: activeCategory === cat ? "#fff" : "#aaa",
-                        borderRadius: "4px 4px 0 0",
-                        borderBottom: activeCategory === cat ? "3px solid #e53935" : "3px solid transparent",
-                        transition: "all 0.2s",
-                      }}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              </div>
+      {/* ── STICKY CATEGORY NAV ── */}
+      <nav style={{
+        position: "sticky", top: 0, zIndex: 50,
+        background: "#111", borderBottom: `1px solid ${S.border}`,
+      }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px" }}>
+          {/* Top row: search */}
+          <div style={{ display: "flex", alignItems: "center", gap: 16, padding: "12px 0 0" }}>
+            <div style={{ position: "relative", flex: 1, maxWidth: 400 }}>
+              <Icon name="Search" size={15} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: S.dim }} />
+              <input
+                type="text"
+                placeholder="Поиск статей..."
+                value={searchQuery}
+                onChange={e => { setSearchQuery(e.target.value); setSelectedArticle(null); setActiveCategory("Все"); }}
+                style={{
+                  background: "#1e1e1e", border: `1px solid ${S.border}`, color: S.text,
+                  fontSize: 13, padding: "9px 14px 9px 36px", borderRadius: 6,
+                  outline: "none", width: "100%", fontFamily: S.font,
+                }}
+              />
             </div>
-
-            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "40px 24px" }}>
-              {filteredArticles.length === 0 ? (
-                <div style={{ textAlign: "center", padding: "80px 0", color: "#555" }}>
-                  <Icon name="Search" size={48} />
-                  <p style={{ marginTop: 16, fontSize: 16 }}>Статей не найдено</p>
-                </div>
-              ) : (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 24 }}>
-                  {filteredArticles.map(article => (
-                    <div
-                      key={article.id}
-                      onClick={() => handleArticleClick(article)}
-                      style={{
-                        background: "#1e1e1e", border: "1px solid #2a2a2a", borderRadius: 6,
-                        overflow: "hidden", cursor: "pointer", transition: "all 0.25s",
-                      }}
-                      onMouseEnter={e => {
-                        (e.currentTarget as HTMLDivElement).style.borderColor = "#e53935";
-                        (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
-                      }}
-                      onMouseLeave={e => {
-                        (e.currentTarget as HTMLDivElement).style.borderColor = "#2a2a2a";
-                        (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-                      }}
-                    >
-                      {/* Color top bar */}
-                      <div style={{ height: 4, background: CATEGORY_COLORS[article.category] || "#e53935" }} />
-                      
-                      <div style={{ padding: 24 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-                          <span style={{
-                            background: CATEGORY_COLORS[article.category] || "#e53935",
-                            color: "#fff", padding: "3px 10px", borderRadius: 2,
-                            fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em",
-                          }}>
-                            {article.category}
-                          </span>
-                          <span style={{ color: "#555", fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
-                            <Icon name="Clock" size={11} />
-                            {article.readTime}
-                          </span>
-                        </div>
-                        
-                        <h3 style={{ fontFamily: "Montserrat", fontWeight: 700, fontSize: 17, color: "#fff", lineHeight: 1.4, marginBottom: 12 }}>
-                          {article.title}
-                        </h3>
-                        <p style={{ color: "#777", fontSize: 13, lineHeight: 1.7, marginBottom: 20 }}>
-                          {article.excerpt}
-                        </p>
-                        
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 16, borderTop: "1px solid #2a2a2a" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                            <div style={{ width: 26, height: 26, background: "#333", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                              <Icon name="User" size={12} color="#999" />
-                            </div>
-                            <div>
-                              <div style={{ color: "#ccc", fontSize: 12, fontWeight: 600 }}>{article.author}</div>
-                              <div style={{ color: "#555", fontSize: 11 }}>{article.date}</div>
-                            </div>
-                          </div>
-                          <div style={{ display: "flex", alignItems: "center", gap: 4, color: "#555", fontSize: 12 }}>
-                            <Icon name="MessageCircle" size={12} />
-                            {article.comments}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+            <div style={{ display: "flex", gap: 4 }}>
+              <button
+                onClick={() => setViewMode("grid")}
+                style={{ background: viewMode === "grid" ? "#2a2a2a" : "none", border: "none", cursor: "pointer", padding: "8px 10px", borderRadius: 4, color: viewMode === "grid" ? S.text : S.dim }}
+              >
+                <Icon name="LayoutGrid" size={16} />
+              </button>
+              <button
+                onClick={() => setViewMode("list")}
+                style={{ background: viewMode === "list" ? "#2a2a2a" : "none", border: "none", cursor: "pointer", padding: "8px 10px", borderRadius: 4, color: viewMode === "list" ? S.text : S.dim }}
+              >
+                <Icon name="List" size={16} />
+              </button>
             </div>
           </div>
-        )}
 
-        {/* ===== CATEGORIES ===== */}
-        {page === "categories" && (
-          <div className="animate-fade-in">
-            <div style={{ borderBottom: "1px solid #2a2a2a", padding: "40px 24px" }}>
-              <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-                <p className="section-label" style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-                  <span className="red-line" />
-                  Навигация
-                </p>
-                <h1 style={{ fontFamily: "Montserrat", fontWeight: 900, fontSize: 48, color: "#fff", textTransform: "uppercase" }}>
-                  Категории
-                </h1>
-              </div>
-            </div>
-            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "40px 24px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 20 }}>
-                {CATEGORIES.slice(1).map(cat => {
-                  const catArticles = ARTICLES.filter(a => a.category === cat);
-                  return (
-                    <div
-                      key={cat}
-                      onClick={() => { setActiveCategory(cat); setPage("articles"); }}
-                      style={{
-                        background: "#1e1e1e", border: "1px solid #2a2a2a", borderRadius: 6,
-                        padding: 28, cursor: "pointer", transition: "all 0.25s",
-                        borderTop: `4px solid ${CATEGORY_COLORS[cat] || "#e53935"}`,
-                      }}
-                      onMouseEnter={e => {
-                        (e.currentTarget as HTMLDivElement).style.borderLeftColor = CATEGORY_COLORS[cat] || "#e53935";
-                        (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
-                      }}
-                      onMouseLeave={e => {
-                        (e.currentTarget as HTMLDivElement).style.borderLeftColor = "#2a2a2a";
-                        (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-                      }}
-                    >
-                      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                        <div style={{ width: 40, height: 40, background: CATEGORY_COLORS[cat] || "#e53935", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                          <Icon name={cat === "Аналитика" ? "BarChart2" : cat === "Обзоры" ? "Star" : cat === "Советы" ? "Lightbulb" : cat === "Новости" ? "Rss" : "Cpu"} size={20} color="#fff" />
-                        </div>
-                        <div>
-                          <h3 style={{ fontFamily: "Montserrat", fontWeight: 700, fontSize: 18, color: "#fff" }}>{cat}</h3>
-                          <span style={{ color: "#555", fontSize: 12 }}>{catArticles.length} статей</span>
-                        </div>
-                      </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                        {catArticles.slice(0, 2).map(a => (
-                          <p key={a.id} style={{ color: "#777", fontSize: 12, lineHeight: 1.4 }}>• {a.title}</p>
-                        ))}
-                      </div>
-                      <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 4, color: CATEGORY_COLORS[cat] || "#e53935", fontSize: 12, fontWeight: 700 }}>
-                        Открыть <Icon name="ArrowRight" size={12} />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ===== ARCHIVE ===== */}
-        {page === "archive" && (
-          <div className="animate-fade-in">
-            <div style={{ borderBottom: "1px solid #2a2a2a", padding: "40px 24px" }}>
-              <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-                <p className="section-label" style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-                  <span className="red-line" />
-                  История публикаций
-                </p>
-                <h1 style={{ fontFamily: "Montserrat", fontWeight: 900, fontSize: 48, color: "#fff", textTransform: "uppercase" }}>
-                  Архив
-                </h1>
-              </div>
-            </div>
-            <div style={{ maxWidth: 800, margin: "0 auto", padding: "40px 24px" }}>
-              {ARCHIVE.map((item, i) => (
-                <div
-                  key={i}
+          {/* Category tabs */}
+          <div style={{ display: "flex", gap: 2, marginTop: 8, overflowX: "auto", scrollbarWidth: "none" }}>
+            {CATEGORIES.map(cat => {
+              const isActive = activeCategory === cat && !searchQuery;
+              const color = cat === "Все" ? S.red : (CATEGORY_COLORS[cat] || S.red);
+              return (
+                <button
+                  key={cat}
+                  onClick={() => handleCategoryClick(cat)}
                   style={{
-                    display: "flex", alignItems: "center", justifyContent: "space-between",
-                    padding: "20px 0", borderBottom: "1px solid #222",
-                    cursor: "pointer", transition: "all 0.2s",
+                    padding: "10px 18px", fontSize: 12, fontWeight: 700,
+                    textTransform: "uppercase", letterSpacing: "0.07em",
+                    border: "none", cursor: "pointer", fontFamily: S.font,
+                    background: "none", whiteSpace: "nowrap" as const,
+                    color: isActive ? "#fff" : S.dim,
+                    borderBottom: isActive ? `3px solid ${color}` : "3px solid transparent",
+                    transition: "all 0.15s",
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.paddingLeft = "12px")}
-                  onMouseLeave={e => (e.currentTarget.style.paddingLeft = "0")}
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                    <div style={{ width: 4, height: 48, background: "#e53935", borderRadius: 2 }} />
-                    <div>
-                      <div style={{ fontFamily: "Montserrat", fontWeight: 700, fontSize: 18, color: "#fff" }}>{item.month}</div>
-                      <div style={{ color: "#555", fontSize: 13 }}>{item.count} публикаций</div>
-                    </div>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#e53935" }}>
-                    <span style={{ fontSize: 13, fontWeight: 600 }}>Открыть</span>
-                    <Icon name="ChevronRight" size={16} />
-                  </div>
-                </div>
-              ))}
-            </div>
+                  {cat}
+                  {cat !== "Все" && (
+                    <span style={{ marginLeft: 6, fontSize: 10, opacity: 0.6 }}>
+                      {ARTICLES.filter(a => a.category === cat).length}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
-        )}
+        </div>
+      </nav>
 
-        {/* ===== ABOUT ===== */}
-        {page === "about" && (
-          <div className="animate-fade-in">
-            <div style={{ borderBottom: "1px solid #2a2a2a", padding: "40px 24px" }}>
-              <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-                <p className="section-label" style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-                  <span className="red-line" />
-                  Команда
-                </p>
-                <h1 style={{ fontFamily: "Montserrat", fontWeight: 900, fontSize: 48, color: "#fff", textTransform: "uppercase" }}>
-                  Об авторах
-                </h1>
+      {/* ── ARTICLE PAGE ── */}
+      {selectedArticle ? (
+        <div className="animate-fade-in">
+          <div style={{ maxWidth: 800, margin: "0 auto", padding: "40px 20px" }}>
+            {/* Back */}
+            <button
+              onClick={handleBack}
+              style={{
+                display: "flex", alignItems: "center", gap: 6, background: "none", border: "none",
+                cursor: "pointer", color: S.muted, fontSize: 13, fontFamily: S.font,
+                marginBottom: 32, padding: 0,
+              }}
+            >
+              <Icon name="ArrowLeft" size={16} />
+              Назад к статьям
+            </button>
+
+            {/* Article header */}
+            <div style={{ marginBottom: 32 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+                <ArticleBadge category={selectedArticle.category} />
+                <span style={{ color: S.dim, fontSize: 13, display: "flex", alignItems: "center", gap: 4 }}>
+                  <Icon name="Clock" size={12} />{selectedArticle.readTime}
+                </span>
+                <span style={{ color: S.dim, fontSize: 13 }}>{selectedArticle.date}</span>
+              </div>
+              <h1 style={{
+                fontFamily: S.font, fontWeight: 900, fontSize: "clamp(26px, 5vw, 40px)",
+                color: S.text, lineHeight: 1.2, marginBottom: 16,
+              }}>
+                {selectedArticle.title}
+              </h1>
+              <p style={{ color: S.muted, fontSize: 16, lineHeight: 1.7, marginBottom: 24 }}>
+                {selectedArticle.excerpt}
+              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 20, borderTop: `1px solid ${S.border}` }}>
+                <div style={{ width: 40, height: 40, background: `linear-gradient(135deg, #c62828, ${S.red})`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Icon name="User" size={18} color="#fff" />
+                </div>
+                <div>
+                  <div style={{ color: S.text, fontSize: 14, fontWeight: 700 }}>{selectedArticle.author}</div>
+                  <div style={{ color: S.dim, fontSize: 12 }}>{selectedArticle.date}</div>
+                </div>
               </div>
             </div>
-            <div style={{ maxWidth: 1000, margin: "0 auto", padding: "60px 24px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 32 }}>
-                {[
-                  { name: "Алексей Громов", role: "Главный редактор", topics: "Аналитика, технологии", articles: 48 },
-                  { name: "Мария Соколова", role: "Автомобильный критик", topics: "Обзоры, тест-драйвы", articles: 36 },
-                  { name: "Дмитрий Петров", role: "Специальный корреспондент", topics: "Советы, репортажи", articles: 29 },
-                  { name: "Наталья Кузнецова", role: "Новостной редактор", topics: "Новости, события", articles: 61 },
-                ].map((author, i) => (
-                  <div key={i} style={{ background: "#1e1e1e", border: "1px solid #2a2a2a", borderRadius: 6, padding: 28, textAlign: "center" }}>
-                    <div style={{ width: 72, height: 72, background: "linear-gradient(135deg, #c62828, #e53935)", borderRadius: "50%", margin: "0 auto 16px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Icon name="User" size={32} color="#fff" />
-                    </div>
-                    <h3 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 18, color: "#fff", marginBottom: 4 }}>{author.name}</h3>
-                    <p style={{ color: "#e53935", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 12 }}>{author.role}</p>
-                    <p style={{ color: "#666", fontSize: 13, marginBottom: 16 }}>{author.topics}</p>
-                    <div style={{ background: "#222", borderRadius: 4, padding: "10px", display: "inline-block" }}>
-                      <span style={{ color: "#e53935", fontWeight: 900, fontSize: 20, fontFamily: "Montserrat" }}>{author.articles}</span>
-                      <span style={{ color: "#555", fontSize: 11, display: "block" }}>статей</span>
-                    </div>
-                  </div>
+
+            {/* Article body */}
+            <div style={{
+              color: "#ccc", fontSize: 16, lineHeight: 1.9,
+              borderTop: `3px solid ${CATEGORY_COLORS[selectedArticle.category] || S.red}`,
+              paddingTop: 32,
+            }}>
+              {selectedArticle.body.split("\n\n").map((para, i) => {
+                if (para.startsWith("**") && para.endsWith("**")) {
+                  return (
+                    <h3 key={i} style={{ fontFamily: S.font, fontWeight: 800, fontSize: 18, color: S.text, marginTop: 28, marginBottom: 12 }}>
+                      {para.replace(/\*\*/g, "")}
+                    </h3>
+                  );
+                }
+                if (para.includes("**")) {
+                  const parts = para.split(/(\*\*[^*]+\*\*)/g);
+                  return (
+                    <p key={i} style={{ marginBottom: 20 }}>
+                      {parts.map((part, j) =>
+                        part.startsWith("**") ? (
+                          <strong key={j} style={{ color: S.text, fontWeight: 700 }}>{part.replace(/\*\*/g, "")}</strong>
+                        ) : part
+                      )}
+                    </p>
+                  );
+                }
+                if (para.startsWith("- ")) {
+                  return (
+                    <ul key={i} style={{ paddingLeft: 20, marginBottom: 20 }}>
+                      {para.split("\n").map((line, j) => (
+                        <li key={j} style={{ marginBottom: 8 }}>{line.replace("- ", "")}</li>
+                      ))}
+                    </ul>
+                  );
+                }
+                return <p key={i} style={{ marginBottom: 20 }}>{para}</p>;
+              })}
+            </div>
+
+            {/* Related articles */}
+            <div style={{ marginTop: 56, paddingTop: 32, borderTop: `1px solid ${S.border}` }}>
+              <h3 style={{ fontFamily: S.font, fontWeight: 800, fontSize: 16, color: S.text, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 20 }}>
+                Читайте также
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+                {ARTICLES.filter(a => a.id !== selectedArticle.id).slice(0, 4).map((a, i) => (
+                  <ArticleRow key={a.id} article={a} onClick={() => handleArticleClick(a)} index={i} />
                 ))}
               </div>
             </div>
-          </div>
-        )}
 
-        {/* ===== CONTACTS ===== */}
-        {page === "contacts" && (
-          <div className="animate-fade-in">
-            <div style={{ borderBottom: "1px solid #2a2a2a", padding: "40px 24px" }}>
-              <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-                <p className="section-label" style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-                  <span className="red-line" />
-                  Связь с нами
-                </p>
-                <h1 style={{ fontFamily: "Montserrat", fontWeight: 900, fontSize: 48, color: "#fff", textTransform: "uppercase" }}>
-                  Контакты
-                </h1>
-              </div>
-            </div>
-            <div style={{ maxWidth: 800, margin: "0 auto", padding: "60px 24px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }}>
-                <div>
-                  <h2 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 22, color: "#fff", marginBottom: 24, textTransform: "uppercase" }}>
-                    Написать нам
-                  </h2>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                    {[
-                      { icon: "Phone", label: "Телефон", value: "+375 29 639 73 78" },
-                      { icon: "Mail", label: "Email", value: "blog@avmmotors.by" },
-                      { icon: "MapPin", label: "Адрес", value: "Минск, Беларусь" },
-                    ].map((contact, i) => (
-                      <div key={i} style={{ display: "flex", alignItems: "center", gap: 16, padding: 16, background: "#1e1e1e", border: "1px solid #2a2a2a", borderRadius: 6 }}>
-                        <div style={{ width: 40, height: 40, background: "#e53935", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                          <Icon name={contact.icon} size={18} color="#fff" />
-                        </div>
-                        <div>
-                          <div style={{ color: "#555", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 2 }}>{contact.label}</div>
-                          <div style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>{contact.value}</div>
-                        </div>
+            {/* Comments */}
+            <div style={{ marginTop: 48, paddingTop: 32, borderTop: `1px solid ${S.border}` }}>
+              <h3 style={{ fontFamily: S.font, fontWeight: 800, fontSize: 16, color: S.text, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
+                Комментарии ({comments.length})
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: 28 }}>
+                {comments.map(c => (
+                  <div key={c.id} style={{ background: S.card, border: `1px solid ${S.border}`, borderRadius: 8, padding: 16 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                      <div style={{ width: 30, height: 30, background: "#333", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <Icon name="User" size={13} color="#777" />
                       </div>
-                    ))}
+                      <span style={{ color: S.text, fontSize: 13, fontWeight: 700 }}>{c.name}</span>
+                      <span style={{ color: S.dim, fontSize: 12 }}>{c.time}</span>
+                    </div>
+                    <p style={{ color: S.muted, fontSize: 14, lineHeight: 1.6, margin: 0 }}>{c.text}</p>
                   </div>
-                </div>
-
-                <div>
-                  <h2 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 22, color: "#fff", marginBottom: 24, textTransform: "uppercase" }}>
-                    Предложить тему
-                  </h2>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                    <input
-                      type="text"
-                      placeholder="Ваше имя"
-                      style={{ background: "#1e1e1e", border: "1px solid #2a2a2a", color: "#fff", padding: "12px 16px", borderRadius: 4, fontSize: 14, fontFamily: "Montserrat", outline: "none" }}
-                    />
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      style={{ background: "#1e1e1e", border: "1px solid #2a2a2a", color: "#fff", padding: "12px 16px", borderRadius: 4, fontSize: 14, fontFamily: "Montserrat", outline: "none" }}
-                    />
-                    <textarea
-                      placeholder="Ваша идея для статьи..."
-                      rows={4}
-                      style={{ background: "#1e1e1e", border: "1px solid #2a2a2a", color: "#fff", padding: "12px 16px", borderRadius: 4, fontSize: 14, fontFamily: "Montserrat", outline: "none", resize: "vertical" }}
-                    />
-                    <button className="btn-primary" style={{ width: "100%" }}>
-                      Отправить
-                    </button>
-                  </div>
-                </div>
+                ))}
               </div>
-            </div>
-          </div>
-        )}
-
-        {/* ===== ARTICLE ===== */}
-        {page === "article" && (
-          <div className="animate-fade-in">
-            {/* Breadcrumb */}
-            <div style={{ borderBottom: "1px solid #2a2a2a", padding: "16px 24px" }}>
-              <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", gap: 8 }}>
-                <button onClick={() => setPage("home")} style={{ background: "none", border: "none", cursor: "pointer", color: "#555", fontSize: 13, fontFamily: "Montserrat" }}>
-                  Главная
-                </button>
-                <Icon name="ChevronRight" size={12} color="#555" />
-                <button onClick={() => setPage("articles")} style={{ background: "none", border: "none", cursor: "pointer", color: "#555", fontSize: 13, fontFamily: "Montserrat" }}>
-                  Статьи
-                </button>
-                <Icon name="ChevronRight" size={12} color="#555" />
-                <span style={{ color: "#e53935", fontSize: 13, fontFamily: "Montserrat" }}>{selectedArticle.category}</span>
-              </div>
-            </div>
-
-            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "40px 24px", display: "grid", gridTemplateColumns: "1fr 320px", gap: 48 }}>
-              
-              {/* Article content */}
-              <div>
-                {/* Header */}
-                <div style={{ marginBottom: 32 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                    <span style={{
-                      background: CATEGORY_COLORS[selectedArticle.category] || "#e53935",
-                      color: "#fff", padding: "4px 12px", borderRadius: 2,
-                      fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em",
-                    }}>
-                      {selectedArticle.category}
-                    </span>
-                    <span style={{ color: "#555", fontSize: 13 }}>{selectedArticle.date}</span>
-                    <span style={{ color: "#555", fontSize: 13, display: "flex", alignItems: "center", gap: 4 }}>
-                      <Icon name="Clock" size={12} />
-                      {selectedArticle.readTime}
-                    </span>
-                  </div>
-                  <h1 style={{ fontFamily: "Montserrat", fontWeight: 900, fontSize: "clamp(28px, 4vw, 42px)", color: "#fff", lineHeight: 1.2, marginBottom: 20 }}>
-                    {selectedArticle.title}
-                  </h1>
-                  <p style={{ fontSize: 18, color: "#888", lineHeight: 1.7 }}>
-                    {selectedArticle.excerpt}
-                  </p>
-                </div>
-
-                {/* Author */}
-                <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "16px 0", borderTop: "1px solid #2a2a2a", borderBottom: "1px solid #2a2a2a", marginBottom: 32 }}>
-                  <div style={{ width: 40, height: 40, background: "linear-gradient(135deg, #c62828, #e53935)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Icon name="User" size={18} color="#fff" />
-                  </div>
-                  <div>
-                    <div style={{ fontWeight: 700, color: "#fff", fontSize: 14, fontFamily: "Montserrat" }}>{selectedArticle.author}</div>
-                    <div style={{ color: "#555", fontSize: 12 }}>Автор статьи</div>
-                  </div>
-                  <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
-                    {["Twitter", "Facebook", "Link"].map(s => (
-                      <button key={s} style={{ width: 34, height: 34, background: "#222", border: "1px solid #333", borderRadius: 4, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <Icon name={s === "Link" ? "Link2" : s === "Twitter" ? "Twitter" : "Facebook"} size={14} color="#888" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Article text */}
-                <div style={{ fontSize: 16, color: "#bbb", lineHeight: 1.9 }}>
-                  <p style={{ marginBottom: 20 }}>
-                    {selectedArticle.excerpt} Это развёрнутый материал, в котором мы рассматриваем все аспекты темы максимально подробно. Мы изучили десятки источников, пообщались с экспертами и провели собственное исследование.
-                  </p>
-                  
-                  <h2 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 22, color: "#fff", textTransform: "uppercase", margin: "32px 0 16px", paddingLeft: 16, borderLeft: "4px solid #e53935" }}>
-                    Основные факты
-                  </h2>
-                  <p style={{ marginBottom: 20 }}>
-                    Цифры говорят сами за себя. В 2025 году рынок показал беспрецедентный рост. Аналитики сходятся во мнении: тренд продолжится ещё минимум три года. Вот что это означает для обычных покупателей и для отрасли в целом.
-                  </p>
-                  
-                  <div style={{ background: "#1e1e1e", border: "1px solid #2a2a2a", borderLeft: "4px solid #e53935", padding: "20px 24px", borderRadius: "0 6px 6px 0", margin: "28px 0", fontStyle: "italic", color: "#ccc", fontSize: 17 }}>
-                    «Китайский автопром прошёл путь за 10 лет, на который немецким производителям потребовалось 50 лет. Это не просто рост — это революция.»
-                  </div>
-                  
-                  <h2 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 22, color: "#fff", textTransform: "uppercase", margin: "32px 0 16px", paddingLeft: 16, borderLeft: "4px solid #e53935" }}>
-                    Что дальше
-                  </h2>
-                  <p style={{ marginBottom: 20 }}>
-                    Прогнозы экспертов оптимистичны. Развитие электромобильной инфраструктуры, снижение стоимости батарей и рост качества сборки делают китайские автомобили всё более привлекательными для покупателей в СНГ.
-                  </p>
-                </div>
-
-                {/* Tags */}
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 32, paddingTop: 24, borderTop: "1px solid #2a2a2a" }}>
-                  {["Китай", "Автомобили", "Рынок", "2026"].map(tag => (
-                    <span key={tag} style={{ background: "#222", border: "1px solid #333", color: "#888", padding: "5px 12px", borderRadius: 2, fontSize: 12, fontWeight: 600 }}>
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Comments */}
-                <div style={{ marginTop: 48 }}>
-                  <h2 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 22, color: "#fff", textTransform: "uppercase", marginBottom: 24 }}>
-                    Комментарии ({comments.length})
-                  </h2>
-
-                  {/* Comment form */}
-                  <div style={{ background: "#1e1e1e", border: "1px solid #2a2a2a", borderRadius: 6, padding: 24, marginBottom: 32 }}>
-                    <input
-                      type="text"
-                      placeholder="Ваше имя"
-                      value={commentName}
-                      onChange={e => setCommentName(e.target.value)}
-                      style={{ width: "100%", background: "#111", border: "1px solid #333", color: "#fff", padding: "10px 14px", borderRadius: 4, fontSize: 13, fontFamily: "Montserrat", outline: "none", marginBottom: 12 }}
-                    />
-                    <textarea
-                      placeholder="Напишите комментарий..."
-                      value={commentText}
-                      onChange={e => setCommentText(e.target.value)}
-                      rows={3}
-                      style={{ width: "100%", background: "#111", border: "1px solid #333", color: "#fff", padding: "10px 14px", borderRadius: 4, fontSize: 13, fontFamily: "Montserrat", outline: "none", resize: "vertical", marginBottom: 12 }}
-                    />
-                    <button className="btn-primary" onClick={handleCommentSubmit}>
-                      Опубликовать
-                    </button>
-                  </div>
-
-                  {/* Comment list */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                    {comments.map(comment => (
-                      <div key={comment.id} style={{ background: "#1e1e1e", border: "1px solid #2a2a2a", borderRadius: 6, padding: 20 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
-                          <div style={{ width: 36, height: 36, background: "#333", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                            <Icon name="User" size={16} color="#666" />
-                          </div>
-                          <div>
-                            <div style={{ fontWeight: 700, color: "#fff", fontSize: 14 }}>{comment.name}</div>
-                            <div style={{ color: "#555", fontSize: 11 }}>{comment.time}</div>
-                          </div>
-                        </div>
-                        <p style={{ color: "#bbb", fontSize: 14, lineHeight: 1.6 }}>{comment.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Article sidebar */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                <div style={{ background: "#1e1e1e", border: "1px solid #2a2a2a", borderRadius: 6, padding: 24 }}>
-                  <h3 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 14, color: "#fff", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 16, borderBottom: "2px solid #e53935", paddingBottom: 10, display: "inline-block" }}>
-                    Читайте также
-                  </h3>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-                    {ARTICLES.filter(a => a.id !== selectedArticle.id).slice(0, 4).map(a => (
-                      <div
-                        key={a.id}
-                        onClick={() => handleArticleClick(a)}
-                        style={{ padding: "14px 0", borderBottom: "1px solid #222", cursor: "pointer" }}
-                      >
-                        <span style={{ fontSize: 10, fontWeight: 700, textTransform: "uppercase", color: CATEGORY_COLORS[a.category] || "#e53935", letterSpacing: "0.08em", display: "block", marginBottom: 4 }}>
-                          {a.category}
-                        </span>
-                        <p style={{ fontSize: 13, color: "#bbb", lineHeight: 1.4, fontWeight: 500 }}>
-                          {a.title}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div style={{ background: "linear-gradient(135deg, #c62828, #e53935)", borderRadius: 6, padding: 24, textAlign: "center" }}>
-                  <Icon name="Car" size={36} color="rgba(255,255,255,0.8)" />
-                  <h3 style={{ fontFamily: "Montserrat", fontWeight: 800, fontSize: 16, color: "#fff", marginTop: 12, marginBottom: 8 }}>
-                    Хотите свой авто из Китая?
-                  </h3>
-                  <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 13, lineHeight: 1.5, marginBottom: 16 }}>
-                    Подберём, проверим и доставим под ваш бюджет
-                  </p>
-                  <button style={{ background: "#fff", color: "#e53935", border: "none", borderRadius: 4, padding: "10px 20px", fontSize: 12, fontWeight: 800, cursor: "pointer", textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Montserrat", width: "100%" }}>
-                    Получить консультацию
+              <div style={{ background: S.card, border: `1px solid ${S.border}`, borderRadius: 8, padding: 20 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <input
+                    type="text"
+                    placeholder="Ваше имя"
+                    value={commentName}
+                    onChange={e => setCommentName(e.target.value)}
+                    style={{ background: "#252525", border: `1px solid ${S.border}`, color: S.text, padding: "10px 14px", borderRadius: 6, fontSize: 14, fontFamily: S.font, outline: "none" }}
+                  />
+                  <textarea
+                    placeholder="Оставьте комментарий..."
+                    value={commentText}
+                    onChange={e => setCommentText(e.target.value)}
+                    rows={3}
+                    style={{ background: "#252525", border: `1px solid ${S.border}`, color: S.text, padding: "10px 14px", borderRadius: 6, fontSize: 14, fontFamily: S.font, outline: "none", resize: "vertical" as const }}
+                  />
+                  <button
+                    onClick={handleCommentSubmit}
+                    style={{
+                      background: S.red, color: "#fff", border: "none", borderRadius: 6,
+                      padding: "12px 24px", fontSize: 13, fontWeight: 700, cursor: "pointer",
+                      fontFamily: S.font, textTransform: "uppercase", letterSpacing: "0.06em",
+                      alignSelf: "flex-start",
+                    }}
+                  >
+                    Отправить
                   </button>
                 </div>
               </div>
             </div>
           </div>
-        )}
+        </div>
+      ) : (
+        /* ── ARTICLES LIST ── */
+        <div className="animate-fade-in">
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "32px 20px" }}>
 
-      </main>
+            {/* Section title */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
+                  {activeCategory !== "Все" && (
+                    <div style={{ width: 8, height: 8, background: accentColor, borderRadius: "50%" }} />
+                  )}
+                  <h1 style={{ fontFamily: S.font, fontWeight: 900, fontSize: 28, color: S.text, textTransform: "uppercase", margin: 0 }}>
+                    {searchQuery ? `Поиск: «${searchQuery}»` : activeCategory === "Все" ? "Все статьи" : activeCategory}
+                  </h1>
+                </div>
+                <div style={{ color: S.dim, fontSize: 13 }}>
+                  {filtered.length} {filtered.length === 1 ? "статья" : filtered.length < 5 ? "статьи" : "статей"}
+                </div>
+              </div>
+              {activeCategory !== "Все" && (
+                <button
+                  onClick={() => handleCategoryClick("Все")}
+                  style={{ background: "none", border: `1px solid ${S.border}`, color: S.dim, cursor: "pointer", padding: "8px 14px", borderRadius: 6, fontSize: 12, fontFamily: S.font, display: "flex", alignItems: "center", gap: 6 }}
+                >
+                  <Icon name="X" size={13} /> Сбросить
+                </button>
+              )}
+            </div>
 
+            {/* Category quick-filters (chips) */}
+            {activeCategory === "Все" && !searchQuery && (
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 32 }}>
+                {CATEGORIES.slice(1).map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => handleCategoryClick(cat)}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 8,
+                      background: S.card, border: `1px solid ${S.border}`,
+                      borderRadius: 999, padding: "8px 16px", cursor: "pointer",
+                      fontFamily: S.font, fontSize: 13, fontWeight: 600, color: S.muted,
+                      transition: "all 0.15s",
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLButtonElement).style.borderColor = CATEGORY_COLORS[cat] || S.red;
+                      (e.currentTarget as HTMLButtonElement).style.color = "#fff";
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLButtonElement).style.borderColor = S.border;
+                      (e.currentTarget as HTMLButtonElement).style.color = S.muted;
+                    }}
+                  >
+                    <Icon name={CATEGORY_ICONS[cat]} size={14} color={CATEGORY_COLORS[cat] || S.red} />
+                    {cat}
+                    <span style={{ background: "#252525", borderRadius: 999, padding: "1px 7px", fontSize: 11, color: S.dim }}>
+                      {ARTICLES.filter(a => a.category === cat).length}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
 
-
+            {filtered.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "80px 0", color: S.dim }}>
+                <Icon name="SearchX" size={48} color={S.border} />
+                <p style={{ marginTop: 16, fontSize: 16 }}>Ничего не найдено</p>
+                <button onClick={() => { setSearchQuery(""); setActiveCategory("Все"); }} style={{ marginTop: 12, background: "none", border: `1px solid ${S.border}`, color: S.muted, cursor: "pointer", padding: "8px 20px", borderRadius: 6, fontFamily: S.font, fontSize: 13 }}>
+                  Сбросить фильтры
+                </button>
+              </div>
+            ) : viewMode === "grid" ? (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 20 }}>
+                {filtered.map((article, i) => (
+                  <ArticleCard key={article.id} article={article} onClick={() => handleArticleClick(article)} featured={i === 0 && activeCategory === "Все" && !searchQuery} />
+                ))}
+              </div>
+            ) : (
+              <div>
+                {filtered.map((article, i) => (
+                  <ArticleRow key={article.id} article={article} onClick={() => handleArticleClick(article)} index={i} />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
