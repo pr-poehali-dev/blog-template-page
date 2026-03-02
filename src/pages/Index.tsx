@@ -281,7 +281,7 @@ function ArticleCard({ article, onClick, featured }: { article: Article; onClick
           </span>
         </div>
         <h3 style={{
-          fontFamily: S.font, fontWeight: 700,
+          fontFamily: S.font, fontWeight: 400,
           fontSize: featured ? 20 : 15,
           color: S.text, lineHeight: 1.4, marginBottom: 10,
         }}>
@@ -335,7 +335,7 @@ function ArticleRow({ article, onClick, index }: { article: Article; onClick: ()
           <ArticleBadge category={article.category} />
           <span style={{ color: S.dim, fontSize: 11 }}>{article.date}</span>
         </div>
-        <div style={{ fontFamily: S.font, fontWeight: 700, fontSize: 15, color: S.text, lineHeight: 1.4, marginBottom: 6 }}>
+        <div style={{ fontFamily: S.font, fontWeight: 400, fontSize: 15, color: S.text, lineHeight: 1.4, marginBottom: 6 }}>
           {article.title}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12, color: S.dim, fontSize: 12 }}>
@@ -623,13 +623,26 @@ export default function Index() {
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "32px 20px" }}>
 
             {/* Section title */}
+            {activeCategory === "Все" && !searchQuery && (
+              <div style={{ marginBottom: 36 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 4 }}>
+                  <div style={{ width: 40, height: 1, background: S.red }} />
+                  <span style={{
+                    fontFamily: S.font, fontWeight: 400, fontSize: 13,
+                    color: S.red, textTransform: "uppercase", letterSpacing: "0.18em",
+                  }}>
+                    Блог AVM Motors
+                  </span>
+                </div>
+              </div>
+            )}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
                   {activeCategory !== "Все" && (
                     <div style={{ width: 8, height: 8, background: accentColor, borderRadius: "50%" }} />
                   )}
-                  <h1 style={{ fontFamily: S.font, fontWeight: 900, fontSize: 28, color: S.text, textTransform: "uppercase", margin: 0 }}>
+                  <h1 style={{ fontFamily: S.font, fontWeight: 400, fontSize: 28, color: S.text, textTransform: "uppercase", margin: 0 }}>
                     {searchQuery ? `Поиск: «${searchQuery}»` : activeCategory === "Все" ? "Все статьи" : activeCategory}
                   </h1>
                 </div>
