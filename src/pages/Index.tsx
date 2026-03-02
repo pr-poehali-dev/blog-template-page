@@ -1,5 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+  return isMobile;
+}
 
 const CATEGORIES = ["Все", "Аналитика", "Новости", "Обзоры", "Советы", "Технологии"];
 
@@ -354,6 +364,7 @@ function ArticleRow({ article, onClick, index }: { article: Article; onClick: ()
 }
 
 export default function Index() {
+  const isMobile = useIsMobile();
   const [activeCategory, setActiveCategory] = useState("Все");
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -406,8 +417,8 @@ export default function Index() {
       }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px" }}>
           {/* Top row: search */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16, padding: "12px 0 0" }}>
-            <div style={{ position: "relative", flex: 1, maxWidth: 400 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 0 0" }}>
+            <div style={{ position: "relative", flex: 1, maxWidth: isMobile ? "100%" : 400 }}>
               <Icon name="Search" size={15} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: S.dim }} />
               <input
                 type="text"
@@ -421,20 +432,22 @@ export default function Index() {
                 }}
               />
             </div>
-            <div style={{ display: "flex", gap: 4 }}>
-              <button
-                onClick={() => setViewMode("grid")}
-                style={{ background: viewMode === "grid" ? "#2a2a2a" : "none", border: "none", cursor: "pointer", padding: "8px 10px", borderRadius: 4, color: viewMode === "grid" ? S.text : S.dim }}
-              >
-                <Icon name="LayoutGrid" size={16} />
-              </button>
-              <button
-                onClick={() => setViewMode("list")}
-                style={{ background: viewMode === "list" ? "#2a2a2a" : "none", border: "none", cursor: "pointer", padding: "8px 10px", borderRadius: 4, color: viewMode === "list" ? S.text : S.dim }}
-              >
-                <Icon name="List" size={16} />
-              </button>
-            </div>
+            {!isMobile && (
+              <div style={{ display: "flex", gap: 4, flexShrink: 0 }}>
+                <button
+                  onClick={() => setViewMode("grid")}
+                  style={{ background: viewMode === "grid" ? "#2a2a2a" : "none", border: "none", cursor: "pointer", padding: "8px 10px", borderRadius: 4, color: viewMode === "grid" ? S.text : S.dim }}
+                >
+                  <Icon name="LayoutGrid" size={16} />
+                </button>
+                <button
+                  onClick={() => setViewMode("list")}
+                  style={{ background: viewMode === "list" ? "#2a2a2a" : "none", border: "none", cursor: "pointer", padding: "8px 10px", borderRadius: 4, color: viewMode === "list" ? S.text : S.dim }}
+                >
+                  <Icon name="List" size={16} />
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Category tabs */}
@@ -472,7 +485,7 @@ export default function Index() {
       {/* ── ARTICLE PAGE ── */}
       {selectedArticle ? (
         <div className="animate-fade-in">
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "32px 20px" }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: isMobile ? "20px 16px" : "32px 20px" }}>
 
             {/* Back */}
             <button
@@ -488,7 +501,7 @@ export default function Index() {
             </button>
 
             {/* Layout: content + sidebar */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 64, alignItems: "start" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 320px", gap: isMobile ? 40 : 64, alignItems: "start" }}>
 
               {/* ── MAIN COLUMN ── */}
               <div>
@@ -504,7 +517,7 @@ export default function Index() {
                 {/* Title */}
                 <h1 style={{
                   fontFamily: S.font, fontWeight: 300,
-                  fontSize: "clamp(28px, 4vw, 44px)",
+                  fontSize: isMobile ? "clamp(22px, 6vw, 32px)" : "clamp(28px, 4vw, 44px)",
                   color: S.text, lineHeight: 1.15, marginBottom: 20,
                   letterSpacing: "-0.01em",
                 }}>
@@ -512,7 +525,7 @@ export default function Index() {
                 </h1>
 
                 {/* Excerpt */}
-                <p style={{ color: S.muted, fontSize: 17, lineHeight: 1.7, marginBottom: 28, fontWeight: 300 }}>
+                <p style={{ color: S.muted, fontSize: isMobile ? 15 : 17, lineHeight: 1.7, marginBottom: 28, fontWeight: 300 }}>
                   {selectedArticle.excerpt}
                 </p>
 
@@ -548,7 +561,7 @@ export default function Index() {
                 </div>
 
                 {/* Body */}
-                <div style={{ color: "#bbb", fontSize: 16, lineHeight: 1.9, fontWeight: 300 }}>
+                <div style={{ color: "#bbb", fontSize: isMobile ? 15 : 16, lineHeight: 1.85, fontWeight: 300 }}>
                   {selectedArticle.body.split("\n\n").map((para, i) => {
                     if (para.startsWith("**") && para.endsWith("**")) {
                       return (
@@ -640,7 +653,7 @@ export default function Index() {
               </div>
 
               {/* ── SIDEBAR ── */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 32, position: "sticky", top: 120 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 32, position: isMobile ? "static" : "sticky", top: 120 }}>
 
                 {/* Read also */}
                 <div>
@@ -707,7 +720,7 @@ export default function Index() {
       ) : (
         /* ── ARTICLES LIST ── */
         <div className="animate-fade-in">
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "32px 20px" }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: isMobile ? "20px 16px" : "32px 20px" }}>
 
             {/* Section title */}
             {activeCategory === "Все" && !searchQuery && (
@@ -729,7 +742,7 @@ export default function Index() {
                   {activeCategory !== "Все" && (
                     <div style={{ width: 8, height: 8, background: accentColor, borderRadius: "50%" }} />
                   )}
-                  <h1 style={{ fontFamily: S.font, fontWeight: 400, fontSize: 28, color: S.text, textTransform: "uppercase", margin: 0 }}>
+                  <h1 style={{ fontFamily: S.font, fontWeight: 400, fontSize: isMobile ? 22 : 28, color: S.text, textTransform: "uppercase", margin: 0 }}>
                     {searchQuery ? `Поиск: «${searchQuery}»` : activeCategory === "Все" ? "Все статьи" : activeCategory}
                   </h1>
                 </div>
@@ -749,7 +762,7 @@ export default function Index() {
 
             {/* Category quick-filters (chips) */}
             {activeCategory === "Все" && !searchQuery && (
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 32 }}>
+              <div style={{ display: "flex", gap: isMobile ? 8 : 10, flexWrap: "wrap", marginBottom: isMobile ? 20 : 32 }}>
                 {CATEGORIES.slice(1).map(cat => (
                   <button
                     key={cat}
@@ -757,8 +770,8 @@ export default function Index() {
                     style={{
                       display: "flex", alignItems: "center", gap: 8,
                       background: S.card, border: `1px solid ${S.border}`,
-                      borderRadius: 999, padding: "8px 16px", cursor: "pointer",
-                      fontFamily: S.font, fontSize: 13, fontWeight: 400, color: S.muted,
+                      borderRadius: 999, padding: isMobile ? "6px 12px" : "8px 16px", cursor: "pointer",
+                      fontFamily: S.font, fontSize: isMobile ? 12 : 13, fontWeight: 400, color: S.muted,
                       transition: "all 0.15s",
                     }}
                     onMouseEnter={e => {
@@ -789,7 +802,7 @@ export default function Index() {
                 </button>
               </div>
             ) : viewMode === "grid" ? (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 20 }}>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(320px, 1fr))", gap: isMobile ? 14 : 20 }}>
                 {filtered.map((article, i) => (
                   <ArticleCard key={article.id} article={article} onClick={() => handleArticleClick(article)} featured={i === 0 && activeCategory === "Все" && !searchQuery} />
                 ))}

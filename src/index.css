@@ -41,16 +41,20 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-foreground;
     font-family: "Montserrat", "Open Sans", sans-serif;
     background-color: #1a1a1a;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
   }
 
   h1,
@@ -59,8 +63,14 @@
   h4,
   h5 {
     font-family: "Montserrat", sans-serif;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 0.01em;
+  }
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
   }
 }
 
